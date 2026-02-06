@@ -1,47 +1,62 @@
-# Machine Learning Project: League of Legends Match Prediction
+# Machine Learning Project: League of Legends Match Prediction (Research-Grade)
 
 ## Overview
 
-Welcome to our League of Legends Match Prediction project! This project is designed to predict match outcomes in the popular game "League of Legends" using machine learning algorithms. We analyze various in-game statistics to create models that can help determine the winning team.
+Welcome to a research-grade League of Legends Match Prediction project. This repo now ships an advanced stacked-ensemble pipeline, probabilistic calibration, permutation-importance analysis, and an interactive Streamlit intelligence dashboard to explore and simulate match outcomes.
 
 ## Dataset
 
-We use a dataset containing high-diamond ranked matches with essential features that may influence match results. The dataset includes data points such as wards placed, kills, deaths, assists, objectives secured, and many other factors. The dataset is loaded from the following link: [high_diamond_ranked_10min.csv](https://raw.githubusercontent.com/trevorkarn/MLCamp2022/main/high_diamond_ranked_10min.csv).
+We automatically download a dataset containing high-diamond ranked matches with essential features that may influence match results. The dataset includes data points such as wards placed, kills, deaths, assists, objectives secured, and many other factors. The dataset is downloaded from:
+
+[high_diamond_ranked_10min.csv](https://raw.githubusercontent.com/trevorkarn/MLCamp2022/main/high_diamond_ranked_10min.csv)
 
 ## Libraries Used
 
-We use several Python libraries for data manipulation, machine learning, and evaluation. The primary libraries employed are:
+We use several Python libraries for data manipulation, machine learning, evaluation, and visualization:
 - Pandas
 - NumPy
 - Scikit-learn
+- Streamlit
+- Plotly
+- Joblib
 
 ## Models Explored
 
-1. **K-Nearest Neighbors (KNN) Classifier:** We use the KNN classifier to predict match outcomes based on the nearest neighbors in the feature space.
-
-2. **Multi-layer Perceptron (MLP) Classifier:** MLP is a type of neural network that can learn complex relationships between features and target variables.
-
-3. **Decision Tree Classifier:** We explore decision tree-based models to analyze feature importance and classification accuracy.
-
-4. **Random Forest Classifier:** Random Forest is an ensemble learning technique that combines multiple decision trees for improved performance.
-
-5. **Support Vector Machine (SVM) Classifier:** SVM is employed for binary classification tasks using linear kernels.
+1. **Stacked Ensemble (HistGradientBoosting + ExtraTrees + RandomForest):** A layered ensemble that combines strong non-linear learners.
+2. **Elastic-Net Logistic Meta-Learner:** Blends base estimators while controlling for overfitting.
+3. **Isotonic Calibration:** Produces well-calibrated win probabilities for probabilistic decision-making.
+4. **Permutation Importance:** Quantifies feature influence with uncertainty estimates.
 
 ## Cross-validation and Model Evaluation
 
-We perform cross-validation to assess the performance of our models and choose the best hyperparameters. Accuracy scores and confusion matrices are used for model evaluation.
+We perform stratified cross-validation to estimate generalization. Evaluation includes accuracy, ROC AUC, log loss, Brier score, and confusion matrices. Metrics and artifacts are stored in `artifacts/` for reproducible analysis.
 
 ## Instructions
 
 To replicate or further explore our project, follow these steps:
 
 1. Clone or download this repository to your local machine.
-2. Ensure you have the required libraries installed (Pandas, NumPy, and Scikit-learn).
-3. Run the Jupyter Notebook or Python script containing the code provided above.
+2. Install the required libraries:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Train the research-grade model and generate artifacts:
+
+   ```bash
+   python train_model.py
+   ```
+
+4. Launch the Streamlit dashboard:
+
+   ```bash
+   streamlit run streamlit_app.py
+   ```
 
 ## Note
 
-Please note that the model's accuracy and performance may vary depending on the dataset, feature selection, and hyperparameters. Feel free to experiment with different models and features to achieve even better results!
+Model accuracy and performance may vary depending on the dataset, feature engineering, and hyperparameters. Feel free to extend the modeling stack, adjust calibration strategies, or integrate additional esports telemetry.
 
 ## Acknowledgments
 
